@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "Consolas";
+    src: url("../fonts/CONSOLAS.TTF");
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Consolas", Helvetica, sans-serif;
+}
+
+.submit {
+    background-color: lightblue;
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #7eacbc;
+    color: #2c505c;
+    /* border-radius: 3px; */
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+label {
+    /* font-size: 1.2em; */
+}
+
+.text-input {
+    /* background-color: #ededed; */
+    padding: 5px;
+    border-left: 3px solid black;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid black;
+    margin: 10px 0px 20px 0px;
+}
+
+.text-input:focus {
+    outline: none;
+}

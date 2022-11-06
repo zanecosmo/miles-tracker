@@ -1,15 +1,18 @@
-
-require("dotenv").config();
-const app = require('express')();
-
-app.get('/', (req, res) => {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const app = (0, express_1.default)();
+app.get('/', (_req, res) => {
     console.log("WE GOT ACTION BABY");
     res.send("HELLO THERE BUDDY");
 });
-
-app.get('/test-get', (req, res) => {
+app.get('/test-get', (_req, res) => {
     console.log("WE GOT ACTION BABY");
     res.send("HELLO THERE BUDDY: WE SEE THAT YOU ARE TRYING TO TEST");
 });
-
 app.listen(process.env.PORT, () => console.log(`SERVER RUNNIG ON PORT ${process.env.PORT}`));
