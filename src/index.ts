@@ -42,7 +42,10 @@ app.post('/test-post', async (req: Request, res: Response) => {
     
     try {
         sql.connect(sqlConfig, (error?: Error) => {
-            if (error) console.log("HERE IS AN ERROR: " + error);
+            if (error) {
+                console.log("HERE IS AN ERROR: " + error);
+                res.send({ "error": error });
+            };
 
             const request = new sql.Request();
 

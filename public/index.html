@@ -1,4 +1,4 @@
-<htm>
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
@@ -6,26 +6,44 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <!-- <h1>Track Miles</h1> -->
-        <p>Enter shift information:</p>
-        <label for="miles-driven">Miles-Driven:</label>
-        <br>
-        <input class="text-input miles-driven" type="text" name="miles-driven">
-        <br>
-        <label for="start-time">Start-Time:</label>
-        <br>
-        <input class="text-input start-time" type="datetime-local" name="start-time">
-        <br>
-        <label for="end-time">End-Time:</label>
-        <br>
-        <input class="text-input end-time" type="datetime-local" name="end-time">
-        <br>
-        <label for="income">Income:</label>
-        <br>
-        <input class="text-input income" type="text" name="income">
-        <br>
-        <div class="submit">Submit</div>
-        <br>
+        <nav>
+            <div class="nav-button">Add Shift</div>
+            <div class="nav-button">Retrieve Shifts</div>
+            <div class="nav-button">Calculate Finances</div>
+        </nav>
+        <fieldset class="add-shift">
+            <legend> Enter shift information </legend>
+
+            <div>
+                <label for="miles-driven">Miles-Driven:</label>
+                <br>
+                <input class="text-input miles-driven" type="text" name="miles-driven">
+            </div>
+            <div>
+                <label for="start-time">Start-Time:</label>
+                <br>
+                <input class="text-input start-time" type="datetime-local" name="start-time">
+            </div>
+            
+            <div>
+                <label for="end-time">End-Time:</label>
+                <br>
+                <input class="text-input end-time" type="datetime-local" name="end-time">
+            </div>
+                
+            <div>
+                <label for="income">Income:</label>
+                <br>
+                <input class="text-input income" type="text" name="income">
+            </div>
+            
+            <div class="submit">Submit</div>
+
+            <div class="invisible validation failure-toast">All fields are required</div>
+            <div class="invisible data-success success-toast">Shift Added</div>
+            <div class="invisible data-failure failure-toast">Failed to add shift</div>
+        </fieldset>
+
         <script src="script.js"></script>
     </body>
-</htm>
+</html>

@@ -1,4 +1,4 @@
-const button = document.querySelector(".submit");
+const submitButton = document.querySelector(".submit");
 
 const inputs = {
     milesDriven: document.querySelector(".miles-driven"),
@@ -6,45 +6,47 @@ const inputs = {
     endTime: document.querySelector(".end-time"),
     income: document.querySelector(".income"),
 };
+
+let currentToast = "";
+
+const displayToast = (className) => {
+    if (currentToast !== "") document.querySelector(`.${currentToast}`).classList.add("invisible");
+    document.querySelector(`.${className}`).classList.remove("invisible");
+    currentToast = className;
+}
+
 const hasNoCharacters = (string) => {
-    for (char of string) {if (char !== " ") return false};
+    for (char of string) if (char !== " ") return false;
     return true;
 };
 
 const extractFormText = () => {
-
     const shift = {};
-
-    for (const input in inputs) {
-
-        console.log(typeof inputs[input].value);
-
-        // if (inputs[key].id === "start-time" || inputs[key].id === "end-time") {
-        //     console.log(typeof inputs[key].value);
-        // }
-
-        if (inputs[input].value.length === 0) {
-            console.log("all fields are required");
-            break;
-        };
-
-        if (hasNoCharacters(inputs[input].value)) {
-            console.log("all fields are required");
-            break;
-        };
-
-        shift[input] = inputs[input].value;
-    };
-
+    for (const input in inputs) shift[input] = inputs[input].value;
     return shift;
 };
 
-button.addEventListener("click", async (e) => {
+const validateForm = () => {
+    for (const input in inputs) {
+        if (inputs[input].value.length === 0 || hasNoCharacters(inputs[input].value)) {
+            displayToast("validation");
+            currentToast = "validation";
+            return false;
+        };
+    };
+    return true;
+};
+
+const clearForm = () => {for (const input in inputs) inputs[input].value = null};
+
+submitButton.addEventListener("click", async (e) => {
+    if (!validateForm()) return;
+
     const shift = extractFormText();
 
     const requestObject = {
-        shift: shift,
-    }
+        shift: shift
+    };
     
     const jsonMessage = {
         method: "POST",
@@ -60,7 +62,11 @@ button.addEventListener("click", async (e) => {
     try {
         const response = await fetch(testServer, jsonMessage);
         const body = await response.json();
-        console.log(body);
+        if ("error" in body) displayToast("data-failure");
+        else {
+            displayToast("data-success");
+            clearForm();
+        }
     } catch (e) {
         console.log(e.message);
     };
